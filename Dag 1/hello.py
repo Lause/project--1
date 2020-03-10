@@ -175,4 +175,4 @@ print (x + x)
 
 if a_smile or b_smile == False:
     return False
-   
+   print ("hej")
