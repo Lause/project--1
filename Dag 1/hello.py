@@ -177,3 +177,4 @@ if a_smile or b_smile == False:
     return False
 
 print ("Hej!")
+print("ELSKER STRANGER THINGS!")
