@@ -1,13 +1,14 @@
 import os 
 import random
 import turtle
+import time
 
 turtle.fd(0)
 turtle.speed(0)
 turtle.bgcolor("black")
 turtle.ht()
 turtle.setundobuffer(1)
-turtle.tracer(1)
+turtle.tracer(2)
 
 class Sprite(turtle.Turtle):
     def __init__(self, spriteshape, color, startx, starty):
@@ -162,9 +163,18 @@ game.draw_border()
 game.show_status()
 
 player = Player("triangle", "white", 0, 0)
-enemy = Enemy("circle", "red", -100, 0)
+#enemy = Enemy("circle", "red", -100, 0)
 missile = Missile("triangle", "yellow", 0, 0)
-ally = Ally ("square", "blue", 0, 0)
+#ally = Ally ("square", "blue", 100, 0)
+
+enemies =[]
+for i in range (6): 
+    enemies.append(Enemy("circle", "red", -100, 0))
+
+allies =[]
+for i in range (6): 
+    allies.append(Ally ("square", "blue", 100, 0))
+
 
 turtle.onkey(player.turn_left, "Left")
 turtle.onkey(player.turn_right, "Right")
@@ -174,10 +184,14 @@ turtle.onkey(missile.fire, "space")
 turtle.listen()
 
 while True:
+    turtle.update()
+    time.sleep(0.01)
+
     player.move()
-    enemy.move()
     missile.move()
-    ally.move()
+
+    for enemy in enemies:
+        enemy.move()
 
     if player.is_collision(enemy):
        x = random.randint(-250, 250)
@@ -185,6 +199,7 @@ while True:
        enemy.goto(x, y)
        game.score -= 100
        game.show_status()
+    
     if missile.is_collision(enemy):
         x = random.randint(-250, 250)
         y = random.randint(-250, 250)
@@ -193,6 +208,10 @@ while True:
 
         game.score += 100
         game.show_status()
+    
+    for ally in allies:
+        ally.move()
+
     if missile.is_collision(ally):
         x = random.randint(-250, 250)
         y = random.randint(-250, 250)
@@ -202,5 +221,8 @@ while True:
         game.score -= 50
         game.show_status()
 
+  
+    
+   
 
 delay = input("Press enter to finish. >")
