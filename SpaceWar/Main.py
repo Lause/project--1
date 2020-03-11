@@ -146,11 +146,20 @@ class Game():
             self.pen.rt(90)
         self.pen.penup()
         self.pen.ht()
+        self.pen.pendown()
 
+    def show_status(self):
+        self.pen.undo()
+        msg = "Score: %s" %(self.score)
+        self.pen.penup()
+        self.pen.goto(-300, 310)
+        self.pen.write(msg, font=("Arial", 16, "normal"))
 
 game = Game()
 
 game.draw_border()
+
+game.show_status()
 
 player = Player("triangle", "white", 0, 0)
 enemy = Enemy("circle", "red", -100, 0)
@@ -174,20 +183,24 @@ while True:
        x = random.randint(-250, 250)
        y = random.randint(-250, 250)
        enemy.goto(x, y)
-    
+       game.score -= 100
+       game.show_status()
     if missile.is_collision(enemy):
         x = random.randint(-250, 250)
         y = random.randint(-250, 250)
         enemy.goto(x, y)
         missile.status = "ready"
 
+        game.score += 100
+        game.show_status()
     if missile.is_collision(ally):
         x = random.randint(-250, 250)
         y = random.randint(-250, 250)
         ally.goto(x, y)
         missile.status = "ready"
 
-    
+        game.score -= 50
+        game.show_status()
 
 
 delay = input("Press enter to finish. >")
