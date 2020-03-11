@@ -6,6 +6,7 @@ import time
 turtle.fd(0)
 turtle.speed(0)
 turtle.bgcolor("black")
+turtle.title("SpaceWar")
 turtle.ht()
 turtle.setundobuffer(1)
 turtle.tracer(2)
@@ -52,6 +53,7 @@ class Sprite(turtle.Turtle):
 class Player(Sprite):
     def __init__(self, spriteshape, color, startx, starty):
         Sprite.__init__(self, spriteshape, color, startx, starty)
+        self.shapesize(stretch_wid=0.6, stretch_len=1.1, outline=None)
         self.speed = 4
         self.lives = 3
 
@@ -103,7 +105,7 @@ def move(self):
 class Missile(Sprite):
     def __init__(self, spriteshape, color, startx, starty):
         Sprite.__init__(self, spriteshape, color, startx, starty)
-        self.shapesize(stretch_wid=0.3, stretch_len=0.4, outline = None)
+        self.shapesize(stretch_wid=0.2, stretch_len=0.4, outline = None)
         self.speed = 20
         self.status = "ready"
         self.goto(-1000, 1000)
