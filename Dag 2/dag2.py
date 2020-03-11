@@ -18,8 +18,8 @@ print ("{} {} {}".format ("I", "Love", "JoeBros"))
 
 #Exercise 1
 bird = " cat"
-worstfood = " broccoli"
-computer = " gold"
+worstfood = " broccoli and asparges"
+computer = " gold and silver"
 
 print ("Here is a" + bird + ", a" + worstfood + ", and a" + computer + ".")
 
@@ -39,7 +39,7 @@ print("                 < Pet me and I will purr. >")
 print("                   -----------------------")
 print("                 /                 ­­­­­­­­­­­­­­­­­­­­­­­       ")
 print("        /\_/\   /                         ")
-print("       ( o.o )                            ")
+print("       ( x.x )                            ")
 print("       >  ^  <                            ")
 
 
