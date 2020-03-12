@@ -36,6 +36,18 @@ enemy.setposition(-200, 250)
 
 enemyspeed = 2
 
+bullet = turtle.Turtle()
+bullet.color("yellow")
+bullet.shape("triangle")
+bullet.penup()
+bullet.speed(0)
+bullet.setheading(90)
+bullet.shapesize(0.5, 0.5)
+bullet.ht()
+
+bulletspeed = 20
+
+bulletstate = "ready"
 
 def move_left():
     x = player.xcor()
@@ -51,10 +63,24 @@ def move_right():
         x = 280
     player.setx(x)
 
+def fire_bullet():
+   
+    global bulletstate
+    if bulletstate == "ready":
+        bulletstate = "fire"
+ 
+
+        x = player.xcor()
+        y = player.ycor() + 10
+        bullet.setposition(x, y)
+        bullet.showturtle()
+
+     
+
 turtle.listen()
 turtle.onkey(move_left, "Left")
 turtle.onkey(move_right, "Right")
-
+turtle.onkey(fire_bullet, "space")
 
 while True:
 
@@ -74,6 +100,14 @@ while True:
         enemyspeed *= -1
         enemy.sety(y)
 
+    if bulletstate == "fire":
+        y = bullet.ycor()
+        y += bulletspeed
+        bullet.sety(y)
+
+    if bullet.ycor() > 275:
+        bullet.ht()
+        bulletstate = "ready"
 
 
 
