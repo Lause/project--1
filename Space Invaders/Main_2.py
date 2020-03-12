@@ -19,6 +19,17 @@ for side in range(4):
     border_pen.lt(90)
 border_pen.ht()
 
+score = 0
+
+score_pen = turtle.Turtle()
+score_pen.speed(0)
+score_pen.color("white")
+score_pen.penup()
+score_pen.setposition(-290, 280)
+scorestring = "Score: %s" %score
+score_pen.write(scorestring, False, align="left", font=("Arial", 14, "normal"))
+score_pen.ht()
+
 player = turtle.Turtle()
 player.color("blue")
 player.shape("triangle")
@@ -129,6 +140,11 @@ while True:
             x = random.randint(-200, 200)
             y = random.randint(100, 250)
             enemy.setposition(x, y)
+
+            score += 10
+            scorestring = "Score: %s" %score
+            score_pen.clear()
+            score_pen.write(scorestring, False, align="left", font=("Arial", 14, "normal"))
 
         if isCollision(player, enemy):
             player.ht()
