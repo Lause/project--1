@@ -1,5 +1,6 @@
 import turtle
 import os
+import math
 
 wn = turtle.Screen()
 wn.bgcolor("black")
@@ -25,14 +26,14 @@ player.speed(0)
 player.setposition(0, -250)
 player.setheading(90)
 
-playerspeed = 15
+playerspeed = 20
 
 enemy = turtle.Turtle()
 enemy.color("red")
 enemy.shape("circle")
 enemy.penup()
 enemy.speed(0)
-enemy.setposition(-200, 250)
+enemy.setposition(-200, -200)
 
 enemyspeed = 2
 
@@ -68,14 +69,18 @@ def fire_bullet():
     global bulletstate
     if bulletstate == "ready":
         bulletstate = "fire"
- 
 
         x = player.xcor()
         y = player.ycor() + 10
         bullet.setposition(x, y)
         bullet.showturtle()
 
-     
+def isCollision(t1, t2):
+    distance = math.sqrt(math.pow(t1.xcor()-t2.xcor(),2)+math.pow(t1.ycor()-t2.ycor(),2))
+    if distance < 15:
+        return True
+    else:
+         return False
 
 turtle.listen()
 turtle.onkey(move_left, "Left")
@@ -109,7 +114,19 @@ while True:
         bullet.ht()
         bulletstate = "ready"
 
+    if isCollision(bullet, enemy):
 
+        bullet.ht()
+        bulletstate = "ready"
+        bullet.setposition(0, -400)
+
+        enemy.setposition(-200, 250)
+
+    if isCollision(player, enemy):
+        player.ht()
+        enemy.ht()
+        print ("Game over")
+        break
 
 
 
