@@ -107,16 +107,18 @@ while True:
         enemy.setx(x)
 
         if enemy.xcor() > 280:
-            y = enemy.ycor()
-            y -= 40
+            for e in enemies:
+                y = e.ycor()
+                y -= 40
+                e.sety(y)
             enemyspeed *= -1
-            enemy.sety(y)
 
         if enemy.xcor() < -280:
-            y = enemy.ycor()
-            y -= 40
+            for e in enemies:
+                y = e.ycor()
+                y -= 40
+                e.sety(y)
             enemyspeed *= -1
-            enemy.sety(y)
 
         if isCollision(bullet, enemy):
 
