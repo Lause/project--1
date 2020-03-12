@@ -14,7 +14,7 @@ turtle.register_shape("C:/Users/Intern/Desktop/project--1/Space Invaders/player.
 
 border_pen = turtle.Turtle()
 border_pen.speed(0)
-border_pen.color("white")
+border_pen.color("purple")
 border_pen.penup()
 border_pen.setposition(-300,-300)
 border_pen.pendown()
