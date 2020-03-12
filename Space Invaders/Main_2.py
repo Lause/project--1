@@ -1,6 +1,7 @@
 import turtle
 import os
 import math
+import random
 
 wn = turtle.Screen()
 wn.bgcolor("black")
@@ -28,12 +29,22 @@ player.setheading(90)
 
 playerspeed = 20
 
-enemy = turtle.Turtle()
-enemy.color("red")
-enemy.shape("circle")
-enemy.penup()
-enemy.speed(0)
-enemy.setposition(-200, -200)
+number_of_enemies = 5
+
+enemies = []
+
+for i in range(number_of_enemies):
+    enemies.append(turtle.Turtle())
+
+
+for enemy in enemies:
+    enemy.color("red")
+    enemy.shape("circle")
+    enemy.penup()
+    enemy.speed(0)
+    x = random.randint(-200, 200)
+    y = random.randint(100, 250)
+    enemy.setposition(x, y)
 
 enemyspeed = 2
 
@@ -89,21 +100,40 @@ turtle.onkey(fire_bullet, "space")
 
 while True:
 
-    x = enemy.xcor()
-    x += enemyspeed
-    enemy.setx(x)
+    for enemy in enemies:
 
-    if enemy.xcor() > 280:
-       y = enemy.ycor()
-       y -= 40
-       enemyspeed *= -1
-       enemy.sety(y)
+        x = enemy.xcor()
+        x += enemyspeed
+        enemy.setx(x)
 
-    if enemy.xcor() < -280:
-        y = enemy.ycor()
-        y -= 40
-        enemyspeed *= -1
-        enemy.sety(y)
+        if enemy.xcor() > 280:
+            y = enemy.ycor()
+            y -= 40
+            enemyspeed *= -1
+            enemy.sety(y)
+
+        if enemy.xcor() < -280:
+            y = enemy.ycor()
+            y -= 40
+            enemyspeed *= -1
+            enemy.sety(y)
+
+        if isCollision(bullet, enemy):
+
+            bullet.ht()
+            bulletstate = "ready"
+            bullet.setposition(0, -400)
+
+            x = random.randint(-200, 200)
+            y = random.randint(100, 250)
+            enemy.setposition(x, y)
+
+        if isCollision(player, enemy):
+            player.ht()
+            enemy.ht()
+            print ("Game over")
+            break
+
 
     if bulletstate == "fire":
         y = bullet.ycor()
@@ -114,20 +144,7 @@ while True:
         bullet.ht()
         bulletstate = "ready"
 
-    if isCollision(bullet, enemy):
-
-        bullet.ht()
-        bulletstate = "ready"
-        bullet.setposition(0, -400)
-
-        enemy.setposition(-200, 250)
-
-    if isCollision(player, enemy):
-        player.ht()
-        enemy.ht()
-        print ("Game over")
-        break
-
+    
 
 
 delay = input("Press enter to finish")
