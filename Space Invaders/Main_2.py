@@ -27,6 +27,16 @@ player.setheading(90)
 
 playerspeed = 15
 
+enemy = turtle.Turtle()
+enemy.color("red")
+enemy.shape("circle")
+enemy.penup()
+enemy.speed(0)
+enemy.setposition(-200, 250)
+
+enemyspeed = 2
+
+
 def move_left():
     x = player.xcor()
     x -= playerspeed
@@ -44,6 +54,27 @@ def move_right():
 turtle.listen()
 turtle.onkey(move_left, "Left")
 turtle.onkey(move_right, "Right")
+
+
+while True:
+
+    x = enemy.xcor()
+    x += enemyspeed
+    enemy.setx(x)
+
+    if enemy.xcor() > 280:
+       y = enemy.ycor()
+       y -= 40
+       enemyspeed *= -1
+       enemy.sety(y)
+
+    if enemy.xcor() < -280:
+        y = enemy.ycor()
+        y -= 40
+        enemyspeed *= -1
+        enemy.sety(y)
+
+
 
 
 
