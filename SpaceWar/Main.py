@@ -6,10 +6,11 @@ import time
 turtle.fd(0)
 turtle.speed(0)
 turtle.bgcolor("black")
+turtle.bgpic("C:/Users/Intern/Desktop/project--1/SpaceWar/starfield.gif")
 turtle.title("SpaceWar")
 turtle.ht()
 turtle.setundobuffer(1)
-turtle.tracer(2)
+turtle.tracer(3)
 
 class Sprite(turtle.Turtle):
     def __init__(self, spriteshape, color, startx, starty):
@@ -138,10 +139,20 @@ class Particle(Sprite):
 
     def explode(self, startx, starty):
         self.goto(startx,starty)
-        self.setheading(random.randint(0,360)
+        self.setheading(random.randint(0,360))
+        self.frame = 1
 
     def move(self):
-        self.df(10)
+        if self.frame > 0:
+            self.fd(10)
+            self.frame += 1
+
+
+        if self.frame > 20:
+            self.frame = 0
+            self.goto(-1000, 1000)
+
+
 
 class Game():
     def __init__(self):
@@ -153,7 +164,7 @@ class Game():
 
     def draw_border(self):
         self.pen.speed(0)
-        self.pen.color("white")
+        self.pen.color("purple")
         self.pen.pensize(3)
         self.pen.penup()
         self.pen.goto(-300, 300)
@@ -193,7 +204,7 @@ for i in range (6):
 
 particles = []
 for i in range(20):
-    particles.append(Particle("circles", "orange", 0, 0))
+    particles.append(Particle("circle", "orange", 0, 0))
 
 
 turtle.onkey(player.turn_left, "Left")
@@ -230,7 +241,8 @@ while True:
         game.show_status()
     
         for particle in particles:
-            particle.goto(missile.xpos(), missile.ypos())
+            particle.explode(missile.xcor(), missile.ycor())
+           
 
     for ally in allies:
         ally.move()
@@ -243,6 +255,11 @@ while True:
 
         game.score -= 50
         game.show_status()
+
+    for particle in particles:
+        particle.move()
+
+        
 
   
     
