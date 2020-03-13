@@ -3,6 +3,7 @@ import random
 import turtle
 import time
 
+#Turtle
 turtle.fd(0)
 turtle.speed(0)
 turtle.bgcolor("black")
@@ -50,7 +51,7 @@ class Sprite(turtle.Turtle):
             return True
         else:
             return False
-
+#Player Class
 class Player(Sprite):
     def __init__(self, spriteshape, color, startx, starty):
         Sprite.__init__(self, spriteshape, color, startx, starty)
@@ -69,13 +70,13 @@ class Player(Sprite):
 
     def decelerate(self):
         self.speed -= 1
-
+#Enemy Class
 class Enemy(Sprite):
     def __init__(self, spriteshape, color, startx, starty):
         Sprite.__init__(self, spriteshape, color, startx, starty)
         self.speed = 6
         self.setheading (random.randint(0,360))
-
+#Ally Class
 class Ally(Sprite):
     def __init__(self, spriteshape, color, startx, starty):
         Sprite.__init__(self, spriteshape, color, startx, starty)
@@ -102,7 +103,7 @@ def move(self):
             self.sety(-290)
             self.lt(60)        
 
-
+#Missile Class
 class Missile(Sprite):
     def __init__(self, spriteshape, color, startx, starty):
         Sprite.__init__(self, spriteshape, color, startx, starty)
@@ -129,7 +130,7 @@ class Missile(Sprite):
             self.ycor()< -290 or self.ycor()> 290:
             self.goto(-1000, 1000)
             self.status = "ready"
-
+#Particle Class
 class Particle(Sprite):
     def __init__(self, spriteshape, color, startx, starty):
         Sprite.__init__(self, spriteshape, color, startx, starty)
@@ -153,7 +154,7 @@ class Particle(Sprite):
             self.goto(-1000, 1000)
 
 
-
+#Game Class
 class Game():
     def __init__(self):
         self.level = 1

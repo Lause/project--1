@@ -11,7 +11,7 @@ wn.bgpic("C:/Users/Intern/Desktop/project--1/Space Invaders/space_invaders_backg
 turtle.register_shape("C:/Users/Intern/Desktop/project--1/Space Invaders/invader.gif")
 turtle.register_shape("C:/Users/Intern/Desktop/project--1/Space Invaders/player.gif")
 
-
+#Border
 border_pen = turtle.Turtle()
 border_pen.speed(0)
 border_pen.color("purple")
@@ -25,7 +25,7 @@ for side in range(4):
 border_pen.ht()
 
 score = 0
-
+#Score
 score_pen = turtle.Turtle()
 score_pen.speed(0)
 score_pen.color("white")
@@ -34,7 +34,7 @@ score_pen.setposition(-290, 280)
 scorestring = "Score: %s" %score
 score_pen.write(scorestring, False, align="left", font=("Arial", 14, "normal"))
 score_pen.ht()
-
+#Player
 player = turtle.Turtle()
 player.color("blue")
 player.shape("C:/Users/Intern/Desktop/project--1/Space Invaders/player.gif")
@@ -63,7 +63,7 @@ for enemy in enemies:
     enemy.setposition(x, y)
 
 enemyspeed = 2
-
+#Bullet
 bullet = turtle.Turtle()
 bullet.color("yellow")
 bullet.shape("triangle")
