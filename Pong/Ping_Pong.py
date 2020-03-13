@@ -40,7 +40,7 @@ ball.dy = -0.2
 
 pen = turtle.Turtle()
 pen.speed(0)
-pen.color("white")
+pen.color("purple")
 pen.penup()
 pen.ht()
 pen.goto(0, 260)
@@ -89,6 +89,7 @@ while True:
     if ball.ycor() > 290:
         ball.sety(290)
         ball.dy *= -1
+
 
     if ball.ycor() < -290:
         ball.sety(-290)
